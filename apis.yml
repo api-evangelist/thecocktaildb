@@ -1,27 +1,41 @@
 aid: thecocktaildb
 name: TheCocktailDB
-description: 'The API and site will always remain free to access at its basic level. '
+description: An open, crowd-sourced database of cocktails and drinks from around the world with a free API.
 type: Index
 position: Consumer
 access: 3rd-Party
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 tags:
-  - API
+  - Cocktails
+  - Drinks
+  - Recipes
 created: '2025-03-01'
-modified: '2025-03-01'
+modified: '2026-03-16'
 url: >-
   https://raw.githubusercontent.com/api-evangelist/thecocktaildb/refs/heads/main/apis.yml
 specificationVersion: '0.19'
 apis:
   - aid: thecocktaildb:thecocktaildb
-    name: TheCocktailDB
-    description: 'The API and site will always remain free to access at its basic level. '
-    humanURL: ' https://www.thecocktaildb.com/api.php'
+    name: TheCocktailDB API
+    description: An open, crowd-sourced database of cocktails and drinks from around the world with a free API.
+    humanURL: https://www.thecocktaildb.com/api.php
+    baseURL: https://www.thecocktaildb.com/api/json/v1/1
     tags:
-      - API
+      - Cocktails
+      - Drinks
+      - Recipes
     properties:
       - type: Documentation
-        url: ' https://www.thecocktaildb.com/api.php'
+        url: https://www.thecocktaildb.com/api.php
+      - type: Sign Up
+        url: https://www.thecocktaildb.com/signup.php
+common:
+  - type: Website
+    url: https://www.thecocktaildb.com/
+  - type: Documentation
+    url: https://www.thecocktaildb.com/api.php
+  - type: Sign Up
+    url: https://www.thecocktaildb.com/signup.php
 maintainers:
   - FN: Kin Lane
-    email: info@apievangelist.com
+    email: kin@apievangelist.com
