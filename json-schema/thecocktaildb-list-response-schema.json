@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/thecocktaildb/refs/heads/main/json-schema/thecocktaildb-list-response-schema.json",
+  "title": "ListResponse",
+  "description": "List of available filter values",
+  "type": "object",
+  "properties": {
+    "drinks": {
+      "type": "array",
+      "description": "Array of list items",
+      "items": {
+        "type": "object",
+        "additionalProperties": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

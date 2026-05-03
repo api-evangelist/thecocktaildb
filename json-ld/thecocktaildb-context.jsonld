@@ -1,0 +1,118 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "cocktaildb": "https://www.thecocktaildb.com/schema/",
+    "schema": "https://schema.org/",
+    "dcterms": "http://purl.org/dc/terms/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "Drink": "cocktaildb:Drink",
+    "ListResponse": "cocktaildb:ListResponse",
+    "FilterResponse": "cocktaildb:FilterResponse",
+    "CocktailsResponse": "cocktaildb:CocktailsResponse",
+    "idDrink": {
+      "@id": "cocktaildb:idDrink",
+      "@type": "xsd:string"
+    },
+    "strDrink": {
+      "@id": "cocktaildb:strDrink",
+      "@type": "xsd:string"
+    },
+    "strDrinkAlternate": {
+      "@id": "cocktaildb:strDrinkAlternate",
+      "@type": "xsd:string"
+    },
+    "strTags": {
+      "@id": "cocktaildb:strTags",
+      "@type": "xsd:string"
+    },
+    "strVideo": {
+      "@id": "cocktaildb:strVideo",
+      "@type": "xsd:string"
+    },
+    "strCategory": {
+      "@id": "cocktaildb:strCategory",
+      "@type": "xsd:string"
+    },
+    "strIBA": {
+      "@id": "cocktaildb:strIBA",
+      "@type": "xsd:string"
+    },
+    "strAlcoholic": {
+      "@id": "cocktaildb:strAlcoholic",
+      "@type": "xsd:string"
+    },
+    "strGlass": {
+      "@id": "cocktaildb:strGlass",
+      "@type": "xsd:string"
+    },
+    "strInstructions": {
+      "@id": "cocktaildb:strInstructions",
+      "@type": "xsd:string"
+    },
+    "strInstructionsES": {
+      "@id": "cocktaildb:strInstructionsES",
+      "@type": "xsd:string"
+    },
+    "strInstructionsDE": {
+      "@id": "cocktaildb:strInstructionsDE",
+      "@type": "xsd:string"
+    },
+    "strInstructionsFR": {
+      "@id": "cocktaildb:strInstructionsFR",
+      "@type": "xsd:string"
+    },
+    "strInstructionsIT": {
+      "@id": "cocktaildb:strInstructionsIT",
+      "@type": "xsd:string"
+    },
+    "strDrinkThumb": {
+      "@id": "cocktaildb:strDrinkThumb",
+      "@type": "xsd:string"
+    },
+    "strIngredient1": {
+      "@id": "cocktaildb:strIngredient1",
+      "@type": "xsd:string"
+    },
+    "strIngredient2": {
+      "@id": "cocktaildb:strIngredient2",
+      "@type": "xsd:string"
+    },
+    "strIngredient3": {
+      "@id": "cocktaildb:strIngredient3",
+      "@type": "xsd:string"
+    },
+    "strMeasure1": {
+      "@id": "cocktaildb:strMeasure1",
+      "@type": "xsd:string"
+    },
+    "strMeasure2": {
+      "@id": "cocktaildb:strMeasure2",
+      "@type": "xsd:string"
+    },
+    "strMeasure3": {
+      "@id": "cocktaildb:strMeasure3",
+      "@type": "xsd:string"
+    },
+    "strImageSource": {
+      "@id": "cocktaildb:strImageSource",
+      "@type": "xsd:string"
+    },
+    "strImageAttribution": {
+      "@id": "cocktaildb:strImageAttribution",
+      "@type": "xsd:string"
+    },
+    "strCreativeCommonsConfirmed": {
+      "@id": "cocktaildb:strCreativeCommonsConfirmed",
+      "@type": "xsd:string"
+    },
+    "dateModified": {
+      "@id": "cocktaildb:dateModified",
+      "@type": "xsd:string"
+    },
+    "drinks": {
+      "@id": "cocktaildb:drinks",
+      "@container": "@set",
+      "@type": "xsd:string"
+    }
+  }
+}

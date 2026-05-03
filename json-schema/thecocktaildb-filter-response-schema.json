@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/thecocktaildb/refs/heads/main/json-schema/thecocktaildb-filter-response-schema.json",
+  "title": "FilterResponse",
+  "description": "Filtered cocktail list with summary information only",
+  "type": "object",
+  "properties": {
+    "drinks": {
+      "type": "array",
+      "description": "Array of cocktail summaries",
+      "items": {
+        "type": "object",
+        "properties": {
+          "strDrink": {
+            "type": "string",
+            "description": "Cocktail name",
+            "example": "Margarita"
+          },
+          "strDrinkThumb": {
+            "type": "string",
+            "description": "Thumbnail URL"
+          },
+          "idDrink": {
+            "type": "string",
+            "description": "Cocktail ID",
+            "example": "11007"
+          }
+        }
+      }
+    }
+  }
+}

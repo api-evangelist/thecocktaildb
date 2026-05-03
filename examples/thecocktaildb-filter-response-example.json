@@ -1,0 +1,9 @@
+{
+  "drinks": [
+    {
+      "strDrink": "Margarita",
+      "strDrinkThumb": "Example Recipe",
+      "idDrink": "11007"
+    }
+  ]
+}

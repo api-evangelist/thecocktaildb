@@ -1,0 +1,148 @@
+vocabulary: "1.0.0"
+
+info:
+  provider: "TheCocktailDB"
+  description: "Vocabulary covering cocktail and drink resources, operations, and personas for TheCocktailDB API"
+  created: "2026-05-03"
+  modified: "2026-05-03"
+
+operational:
+  apis:
+    - namespace: cocktaildb
+      version: "1.0"
+      baseUrl: https://www.thecocktaildb.com/api/json/v1/1
+      status: active
+
+  resources:
+    - name: cocktails
+      api: cocktaildb
+      actions: [search, lookup, filter, random]
+      description: "Cocktail recipes with ingredients, instructions, and images"
+    - name: ingredients
+      api: cocktaildb
+      actions: [search, lookup, list]
+      description: "Cocktail ingredients with descriptions and images"
+    - name: categories
+      api: cocktaildb
+      actions: [list, filter]
+      description: "Drink categories (Cocktail, Shot, Punch, etc.)"
+    - name: glass-types
+      api: cocktaildb
+      actions: [list, filter]
+      description: "Glass types for serving cocktails"
+    - name: alcoholic-filters
+      api: cocktaildb
+      actions: [list, filter]
+      description: "Alcoholic status classifications"
+
+  actions:
+    - name: search
+      methods: [GET]
+      pattern: query
+    - name: lookup
+      methods: [GET]
+      pattern: read
+    - name: filter
+      methods: [GET]
+      pattern: query
+    - name: list
+      methods: [GET]
+      pattern: read
+    - name: random
+      methods: [GET]
+      pattern: read
+
+  schemas:
+    core:
+      - name: Drink
+        description: "Full cocktail with ingredients, instructions, images, and metadata"
+      - name: CocktailsResponse
+        description: "API response wrapping a list of cocktails"
+      - name: FilterResponse
+        description: "Filtered cocktail summary list"
+      - name: ListResponse
+        description: "List of available filter values"
+
+  parameters:
+    filters:
+      - name: s
+        description: "Search by name"
+      - name: f
+        description: "Browse by first letter"
+      - name: i
+        description: "Search by ingredient or list ingredients"
+      - name: a
+        description: "Filter by alcoholic status"
+      - name: c
+        description: "Filter by category"
+      - name: g
+        description: "Filter by glass type"
+    identifiers:
+      - name: i
+        description: "Cocktail ID"
+      - name: iid
+        description: "Ingredient ID"
+
+  enums:
+    alcoholic_status:
+      - Alcoholic
+      - Non alcoholic
+      - Optional alcohol
+
+  authentication: []
+
+capability:
+  workflows:
+    - name: cocktail-discovery
+      file: capabilities/cocktail-discovery.yaml
+      description: "Cocktail search, lookup, and recommendation workflow"
+      apisUsed: [cocktaildb]
+      toolCount: 13
+      personas: [Bartender, Mixologist, Consumer App, AI Agent]
+
+  personas:
+    - id: bartender
+      name: Bartender
+      description: "Professional bartender looking up recipes and ingredient substitutions"
+      workflows: [cocktail-discovery]
+    - id: mixologist
+      name: Mixologist
+      description: "Cocktail creator exploring new recipes and ingredients"
+      workflows: [cocktail-discovery]
+    - id: ai-agent
+      name: AI Agent
+      description: "LLM or AI agent helping users discover cocktail recipes"
+      workflows: [cocktail-discovery]
+
+  domains:
+    - name: Recipe Discovery
+      description: "Finding and browsing cocktail recipes by various criteria"
+    - name: Ingredient Research
+      description: "Looking up ingredients and finding cocktails that use them"
+
+  namespaces:
+    - id: cocktaildb
+      type: consumed
+      baseUri: https://www.thecocktaildb.com/api/json/v1/1
+    - id: cocktail-discovery-api
+      type: rest-exposed
+      port: 8080
+    - id: cocktail-discovery-mcp
+      type: mcp-exposed
+      port: 9090
+
+  binds: []
+
+crossReference:
+  - resource: cocktails
+    operations: [search-cocktails, lookup-cocktail-by-id, get-random-cocktail]
+    workflows: [cocktail-discovery]
+    personas: [Bartender, Mixologist, AI Agent]
+  - resource: ingredients
+    operations: [search-ingredients, lookup-ingredient-by-id, list-ingredients]
+    workflows: [cocktail-discovery]
+    personas: [Mixologist, AI Agent]
+  - resource: categories
+    operations: [filter-by-category, list-categories]
+    workflows: [cocktail-discovery]
+    personas: [Bartender, AI Agent]

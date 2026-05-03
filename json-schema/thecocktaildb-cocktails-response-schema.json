@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/thecocktaildb/refs/heads/main/json-schema/thecocktaildb-cocktails-response-schema.json",
+  "title": "CocktailsResponse",
+  "description": "Response containing a list of cocktails",
+  "type": "object",
+  "properties": {
+    "drinks": {
+      "type": "array",
+      "description": "Array of cocktail objects; null if no results found",
+      "items": {
+        "$ref": "#/components/schemas/Drink"
+      },
+      "nullable": true
+    }
+  }
+}

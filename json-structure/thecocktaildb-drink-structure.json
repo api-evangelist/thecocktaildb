@@ -1,0 +1,138 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/thecocktaildb/refs/heads/main/json-structure/thecocktaildb-drink-structure.json",
+  "name": "Drink",
+  "description": "Full cocktail details including ingredients, instructions, and media",
+  "type": "object",
+  "properties": {
+    "idDrink": {
+      "type": "string",
+      "description": "Unique cocktail identifier",
+      "example": "11007"
+    },
+    "strDrink": {
+      "type": "string",
+      "description": "Cocktail name",
+      "example": "Margarita"
+    },
+    "strDrinkAlternate": {
+      "type": "string",
+      "description": "Alternate name for the cocktail",
+      "nullable": true
+    },
+    "strTags": {
+      "type": "string",
+      "description": "Comma-separated tags",
+      "nullable": true
+    },
+    "strVideo": {
+      "type": "string",
+      "description": "Video URL",
+      "nullable": true
+    },
+    "strCategory": {
+      "type": "string",
+      "description": "Category of drink",
+      "example": "Ordinary Drink"
+    },
+    "strIBA": {
+      "type": "string",
+      "description": "IBA classification",
+      "nullable": true
+    },
+    "strAlcoholic": {
+      "type": "string",
+      "description": "Whether the drink is alcoholic",
+      "enum": [
+        "Alcoholic",
+        "Non alcoholic",
+        "Optional alcohol"
+      ],
+      "example": "Alcoholic"
+    },
+    "strGlass": {
+      "type": "string",
+      "description": "Type of glass",
+      "example": "Cocktail glass"
+    },
+    "strInstructions": {
+      "type": "string",
+      "description": "Preparation instructions in English"
+    },
+    "strInstructionsES": {
+      "type": "string",
+      "description": "Preparation instructions in Spanish",
+      "nullable": true
+    },
+    "strInstructionsDE": {
+      "type": "string",
+      "description": "Preparation instructions in German",
+      "nullable": true
+    },
+    "strInstructionsFR": {
+      "type": "string",
+      "description": "Preparation instructions in French",
+      "nullable": true
+    },
+    "strInstructionsIT": {
+      "type": "string",
+      "description": "Preparation instructions in Italian",
+      "nullable": true
+    },
+    "strDrinkThumb": {
+      "type": "string",
+      "description": "Thumbnail image URL",
+      "example": "https://www.thecocktaildb.com/images/media/drink/5noda61589575158.jpg"
+    },
+    "strIngredient1": {
+      "type": "string",
+      "description": "First ingredient",
+      "nullable": true
+    },
+    "strIngredient2": {
+      "type": "string",
+      "description": "Second ingredient",
+      "nullable": true
+    },
+    "strIngredient3": {
+      "type": "string",
+      "description": "Third ingredient",
+      "nullable": true
+    },
+    "strMeasure1": {
+      "type": "string",
+      "description": "Measure for first ingredient",
+      "nullable": true
+    },
+    "strMeasure2": {
+      "type": "string",
+      "description": "Measure for second ingredient",
+      "nullable": true
+    },
+    "strMeasure3": {
+      "type": "string",
+      "description": "Measure for third ingredient",
+      "nullable": true
+    },
+    "strImageSource": {
+      "type": "string",
+      "description": "Image source URL",
+      "nullable": true
+    },
+    "strImageAttribution": {
+      "type": "string",
+      "description": "Image attribution",
+      "nullable": true
+    },
+    "strCreativeCommonsConfirmed": {
+      "type": "string",
+      "description": "Whether image is Creative Commons confirmed",
+      "nullable": true
+    },
+    "dateModified": {
+      "type": "string",
+      "description": "Date last modified",
+      "nullable": true
+    }
+  }
+}

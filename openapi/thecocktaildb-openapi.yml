@@ -1,0 +1,437 @@
+openapi: 3.0.3
+info:
+  title: TheCocktailDB API
+  description: >-
+    An open, crowd-sourced database of cocktails and drinks from around the
+    world with a free API. Search cocktails by name, ingredient, category,
+    glass type, or alcoholic content. Includes detailed recipes, measurements,
+    and images.
+  version: "1.0"
+  contact:
+    url: https://www.thecocktaildb.com/
+  x-generated-from: documentation
+servers:
+  - url: https://www.thecocktaildb.com/api/json/v1/1
+    description: Production API server (free tier with API key 1)
+security: []
+tags:
+  - name: Search
+    description: Search for cocktails and ingredients
+  - name: Lookup
+    description: Retrieve details by ID
+  - name: Filter
+    description: Filter cocktails by attributes
+  - name: List
+    description: List available categories, glasses, and ingredients
+paths:
+  /search.php:
+    get:
+      operationId: searchCocktailsByName
+      summary: TheCocktailDB Search Cocktails by Name or First Letter
+      description: >-
+        Search for cocktails by name using the 's' parameter, or browse
+        cocktails starting with a specific letter using the 'f' parameter.
+        Use the 'i' parameter to search for an ingredient by name.
+      tags:
+        - Search
+      parameters:
+        - name: s
+          in: query
+          description: Cocktail name to search (e.g. margarita, mojito)
+          required: false
+          schema:
+            type: string
+            example: margarita
+        - name: f
+          in: query
+          description: First letter to browse cocktails alphabetically (single letter a-z)
+          required: false
+          schema:
+            type: string
+            example: a
+        - name: i
+          in: query
+          description: Ingredient name to search
+          required: false
+          schema:
+            type: string
+            example: vodka
+      responses:
+        '200':
+          description: Successful response with cocktail or ingredient list
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CocktailsResponse'
+              examples:
+                SearchCocktailsByName200Example:
+                  summary: Default searchCocktailsByName 200 response
+                  x-microcks-default: true
+                  value:
+                    drinks:
+                      - idDrink: "11007"
+                        strDrink: Margarita
+                        strCategory: Ordinary Drink
+                        strAlcoholic: Alcoholic
+                        strGlass: Cocktail glass
+                        strInstructions: Rub the rim of the glass with the lime slice to make the salt stick to it. Take care to moisten only the outer rim and sprinkle the salt on it. The salt should present to the lips of the imbiber and never mix into the cocktail. Shake the other ingredients with ice, then carefully pour into the glass.
+                        strDrinkThumb: https://www.thecocktaildb.com/images/media/drink/5noda61589575158.jpg
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+
+  /lookup.php:
+    get:
+      operationId: lookupById
+      summary: TheCocktailDB Lookup Cocktail or Ingredient by ID
+      description: >-
+        Look up a full cocktail detail by its ID using the 'i' parameter, or
+        look up an ingredient by its ingredient ID using the 'iid' parameter.
+      tags:
+        - Lookup
+      parameters:
+        - name: i
+          in: query
+          description: Cocktail ID to look up
+          required: false
+          schema:
+            type: string
+            example: "11007"
+        - name: iid
+          in: query
+          description: Ingredient ID to look up
+          required: false
+          schema:
+            type: string
+            example: "552"
+      responses:
+        '200':
+          description: Cocktail or ingredient details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CocktailsResponse'
+              examples:
+                LookupById200Example:
+                  summary: Default lookupById 200 response
+                  x-microcks-default: true
+                  value:
+                    drinks:
+                      - idDrink: "11007"
+                        strDrink: Margarita
+                        strCategory: Ordinary Drink
+                        strAlcoholic: Alcoholic
+                        strGlass: Cocktail glass
+                        strInstructions: Shake all ingredients together with ice.
+                        strDrinkThumb: https://www.thecocktaildb.com/images/media/drink/5noda61589575158.jpg
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+
+  /random.php:
+    get:
+      operationId: getRandomCocktail
+      summary: TheCocktailDB Get a Random Cocktail
+      description: Retrieve a single random cocktail with full details.
+      tags:
+        - Lookup
+      responses:
+        '200':
+          description: A random cocktail
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CocktailsResponse'
+              examples:
+                GetRandomCocktail200Example:
+                  summary: Default getRandomCocktail 200 response
+                  x-microcks-default: true
+                  value:
+                    drinks:
+                      - idDrink: "15346"
+                        strDrink: Aviation
+                        strCategory: Cocktail
+                        strAlcoholic: Alcoholic
+                        strGlass: Cocktail glass
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+
+  /filter.php:
+    get:
+      operationId: filterCocktails
+      summary: TheCocktailDB Filter Cocktails by Attribute
+      description: >-
+        Filter cocktails by a single ingredient ('i'), alcoholic content ('a'),
+        category ('c'), or glass type ('g'). Multi-ingredient filtering is
+        available to premium subscribers.
+      tags:
+        - Filter
+      parameters:
+        - name: i
+          in: query
+          description: Filter by ingredient name (e.g. vodka)
+          required: false
+          schema:
+            type: string
+            example: vodka
+        - name: a
+          in: query
+          description: Filter by alcoholic status
+          required: false
+          schema:
+            type: string
+            enum:
+              - Alcoholic
+              - Non_Alcoholic
+            example: Alcoholic
+        - name: c
+          in: query
+          description: Filter by category
+          required: false
+          schema:
+            type: string
+            example: Cocktail
+        - name: g
+          in: query
+          description: Filter by glass type
+          required: false
+          schema:
+            type: string
+            example: Cocktail glass
+      responses:
+        '200':
+          description: List of matching cocktails (summary view)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FilterResponse'
+              examples:
+                FilterCocktails200Example:
+                  summary: Default filterCocktails 200 response
+                  x-microcks-default: true
+                  value:
+                    drinks:
+                      - strDrink: Margarita
+                        strDrinkThumb: https://www.thecocktaildb.com/images/media/drink/5noda61589575158.jpg
+                        idDrink: "11007"
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+
+  /list.php:
+    get:
+      operationId: listCategories
+      summary: TheCocktailDB List Categories, Glasses, Ingredients, or Alcoholic Filters
+      description: >-
+        List all available categories ('c=list'), glasses ('g=list'),
+        ingredients ('i=list'), or alcoholic filters ('a=list').
+      tags:
+        - List
+      parameters:
+        - name: c
+          in: query
+          description: Set to 'list' to retrieve all categories
+          required: false
+          schema:
+            type: string
+            enum:
+              - list
+        - name: g
+          in: query
+          description: Set to 'list' to retrieve all glass types
+          required: false
+          schema:
+            type: string
+            enum:
+              - list
+        - name: i
+          in: query
+          description: Set to 'list' to retrieve all ingredients
+          required: false
+          schema:
+            type: string
+            enum:
+              - list
+        - name: a
+          in: query
+          description: Set to 'list' to retrieve all alcoholic filter options
+          required: false
+          schema:
+            type: string
+            enum:
+              - list
+      responses:
+        '200':
+          description: List of available filter values
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListResponse'
+              examples:
+                ListCategories200Example:
+                  summary: Default listCategories 200 response
+                  x-microcks-default: true
+                  value:
+                    drinks:
+                      - strCategory: Ordinary Drink
+                      - strCategory: Cocktail
+                      - strCategory: Shake
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+
+components:
+  schemas:
+    Drink:
+      type: object
+      description: Full cocktail details including ingredients, instructions, and media
+      properties:
+        idDrink:
+          type: string
+          description: Unique cocktail identifier
+          example: "11007"
+        strDrink:
+          type: string
+          description: Cocktail name
+          example: Margarita
+        strDrinkAlternate:
+          type: string
+          description: Alternate name for the cocktail
+          nullable: true
+        strTags:
+          type: string
+          description: Comma-separated tags
+          nullable: true
+        strVideo:
+          type: string
+          description: Video URL
+          nullable: true
+        strCategory:
+          type: string
+          description: Category of drink
+          example: Ordinary Drink
+        strIBA:
+          type: string
+          description: IBA classification
+          nullable: true
+        strAlcoholic:
+          type: string
+          description: Whether the drink is alcoholic
+          enum:
+            - Alcoholic
+            - Non alcoholic
+            - Optional alcohol
+          example: Alcoholic
+        strGlass:
+          type: string
+          description: Type of glass
+          example: Cocktail glass
+        strInstructions:
+          type: string
+          description: Preparation instructions in English
+        strInstructionsES:
+          type: string
+          description: Preparation instructions in Spanish
+          nullable: true
+        strInstructionsDE:
+          type: string
+          description: Preparation instructions in German
+          nullable: true
+        strInstructionsFR:
+          type: string
+          description: Preparation instructions in French
+          nullable: true
+        strInstructionsIT:
+          type: string
+          description: Preparation instructions in Italian
+          nullable: true
+        strDrinkThumb:
+          type: string
+          description: Thumbnail image URL
+          example: https://www.thecocktaildb.com/images/media/drink/5noda61589575158.jpg
+        strIngredient1:
+          type: string
+          description: First ingredient
+          nullable: true
+        strIngredient2:
+          type: string
+          description: Second ingredient
+          nullable: true
+        strIngredient3:
+          type: string
+          description: Third ingredient
+          nullable: true
+        strMeasure1:
+          type: string
+          description: Measure for first ingredient
+          nullable: true
+        strMeasure2:
+          type: string
+          description: Measure for second ingredient
+          nullable: true
+        strMeasure3:
+          type: string
+          description: Measure for third ingredient
+          nullable: true
+        strImageSource:
+          type: string
+          description: Image source URL
+          nullable: true
+        strImageAttribution:
+          type: string
+          description: Image attribution
+          nullable: true
+        strCreativeCommonsConfirmed:
+          type: string
+          description: Whether image is Creative Commons confirmed
+          nullable: true
+        dateModified:
+          type: string
+          description: Date last modified
+          nullable: true
+
+    CocktailsResponse:
+      type: object
+      description: Response containing a list of cocktails
+      properties:
+        drinks:
+          type: array
+          description: Array of cocktail objects; null if no results found
+          items:
+            $ref: '#/components/schemas/Drink'
+          nullable: true
+
+    FilterResponse:
+      type: object
+      description: Filtered cocktail list with summary information only
+      properties:
+        drinks:
+          type: array
+          description: Array of cocktail summaries
+          items:
+            type: object
+            properties:
+              strDrink:
+                type: string
+                description: Cocktail name
+                example: Margarita
+              strDrinkThumb:
+                type: string
+                description: Thumbnail URL
+              idDrink:
+                type: string
+                description: Cocktail ID
+                example: "11007"
+
+    ListResponse:
+      type: object
+      description: List of available filter values
+      properties:
+        drinks:
+          type: array
+          description: Array of list items
+          items:
+            type: object
+            additionalProperties:
+              type: string
