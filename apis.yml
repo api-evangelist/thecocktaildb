@@ -1,6 +1,7 @@
 aid: thecocktaildb
 name: TheCocktailDB
-description: An open, crowd-sourced database of cocktails and drinks from around the world with a free API.
+description: An open, crowd-sourced database of cocktails and drinks from around the world with a free
+  API.
 type: Index
 position: Consumer
 access: 3rd-Party
@@ -11,18 +12,16 @@ tags:
   - Recipes
   - Food And Beverage
 created: '2025-03-01'
-modified: '2026-05-03'
-url: >-
-  https://raw.githubusercontent.com/api-evangelist/thecocktaildb/refs/heads/main/apis.yml
+modified: '2026-05-04'
+url: https://raw.githubusercontent.com/api-evangelist/thecocktaildb/refs/heads/main/apis.yml
 specificationVersion: '0.19'
 apis:
   - aid: thecocktaildb:thecocktaildb
     name: TheCocktailDB API
-    description: >-
-      An open, crowd-sourced database of cocktails and drinks from around the
-      world with a free API. Search cocktails by name, ingredient, category,
-      glass type, or alcoholic content. Look up full recipes with ingredients,
-      measurements, instructions, and images. Free tier available with API key 1.
+    description: An open, crowd-sourced database of cocktails and drinks from around the world with a
+      free API. Search cocktails by name, ingredient, category, glass type, or alcoholic content. Look
+      up full recipes with ingredients, measurements, instructions, and images. Free tier available with
+      API key 1.
     humanURL: https://www.thecocktaildb.com/api.php
     baseURL: https://www.thecocktaildb.com/api/json/v1/1
     tags:
@@ -71,24 +70,12 @@ common:
     title: Cocktail Discovery
   - type: Features
     data:
-      - name: Cocktail Search
-        description: Search cocktails by name or browse alphabetically by first letter
-      - name: Ingredient Search
-        description: Search for ingredients and find cocktails containing them
-      - name: Filter by Category
-        description: Filter cocktails by category (Cocktail, Shot, Punch, etc.)
-      - name: Filter by Glass Type
-        description: Filter cocktails by glass type (Cocktail glass, Highball, etc.)
-      - name: Alcoholic Filtering
-        description: Filter cocktails by alcoholic or non-alcoholic status
-      - name: Random Cocktail
-        description: Retrieve a random cocktail recipe for inspiration
-      - name: Full Recipe Details
-        description: Complete recipes with up to 15 ingredients, measurements, and step-by-step instructions
-      - name: Multi-Language Instructions
-        description: Instructions available in English, Spanish, German, French, and Italian
-      - name: Images
-        description: Drink and ingredient images available in multiple sizes
+      - 'TheCocktailDB: free public API'
+      - Free public cocktail recipe API. Patreon supporters get premium API key with no rate limits.
+      - 'Public URL: https://www.thecocktaildb.com/'
+    sources:
+      - https://www.thecocktaildb.com/api.php
+    updated: '2026-05-04'
   - type: UseCases
     data:
       - name: Cocktail App Development
