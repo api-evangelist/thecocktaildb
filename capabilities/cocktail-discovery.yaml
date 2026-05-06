@@ -1,233 +1,361 @@
-naftiko: "1.0.0-alpha1"
-
+naftiko: 1.0.0-alpha2
 info:
-  label: "TheCocktailDB Cocktail Discovery"
-  description: "Unified workflow for cocktail recipe discovery, search, and drink recommendations. Combines search, lookup, filter, and listing capabilities for bartenders, mixologists, and cocktail enthusiasts."
+  label: TheCocktailDB Cocktail Discovery
+  description: Unified workflow for cocktail recipe discovery, search, and drink recommendations. Combines search, lookup,
+    filter, and listing capabilities for bartenders, mixologists, and cocktail enthusiasts.
   tags:
-    - Cocktails
-    - Drinks
-    - Recipes
-    - Food And Beverage
-  created: "2026-05-03"
-  modified: "2026-05-03"
-
+  - Cocktails
+  - Drinks
+  - Recipes
+  - Food And Beverage
+  created: '2026-05-03'
+  modified: '2026-05-06'
 binds: []
-
 capability:
   consumes:
-    - import: cocktaildb
-      location: ./shared/thecocktaildb.yaml
-
+  - type: http
+    namespace: cocktaildb
+    baseUri: https://www.thecocktaildb.com/api/json/v1/1
+    description: Open cocktail and drinks database API
+    resources:
+    - name: search
+      path: /search.php
+      description: Search cocktails by name or first letter, or search ingredients
+      operations:
+      - name: search-cocktails
+        method: GET
+        description: Search cocktails by name or first letter
+        inputParameters:
+        - name: s
+          in: query
+          type: string
+          required: false
+          description: Cocktail name to search
+        - name: f
+          in: query
+          type: string
+          required: false
+          description: First letter to browse alphabetically
+        - name: i
+          in: query
+          type: string
+          required: false
+          description: Ingredient name to search
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: lookup
+      path: /lookup.php
+      description: Look up a cocktail or ingredient by ID
+      operations:
+      - name: lookup-by-id
+        method: GET
+        description: Retrieve full cocktail or ingredient details by ID
+        inputParameters:
+        - name: i
+          in: query
+          type: string
+          required: false
+          description: Cocktail ID
+        - name: iid
+          in: query
+          type: string
+          required: false
+          description: Ingredient ID
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: random
+      path: /random.php
+      description: Get a random cocktail
+      operations:
+      - name: get-random-cocktail
+        method: GET
+        description: Retrieve a single random cocktail with full details
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: filter
+      path: /filter.php
+      description: Filter cocktails by ingredient, alcoholic status, category, or glass type
+      operations:
+      - name: filter-cocktails
+        method: GET
+        description: Filter cocktails by various attributes
+        inputParameters:
+        - name: i
+          in: query
+          type: string
+          required: false
+          description: Filter by ingredient
+        - name: a
+          in: query
+          type: string
+          required: false
+          description: Filter by alcoholic status
+        - name: c
+          in: query
+          type: string
+          required: false
+          description: Filter by category
+        - name: g
+          in: query
+          type: string
+          required: false
+          description: Filter by glass type
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: list
+      path: /list.php
+      description: List available categories, glasses, ingredients, or alcoholic filters
+      operations:
+      - name: list-filter-values
+        method: GET
+        description: List all available filter values
+        inputParameters:
+        - name: c
+          in: query
+          type: string
+          required: false
+          description: Set to 'list' for categories
+        - name: g
+          in: query
+          type: string
+          required: false
+          description: Set to 'list' for glass types
+        - name: i
+          in: query
+          type: string
+          required: false
+          description: Set to 'list' for ingredients
+        - name: a
+          in: query
+          type: string
+          required: false
+          description: Set to 'list' for alcoholic filters
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
   exposes:
-    - type: rest
-      port: 8080
-      namespace: cocktail-discovery-api
-      description: "Unified REST API for cocktail discovery and recipe lookup."
-      resources:
-        - path: /v1/cocktails
-          name: cocktails
-          description: "Search and browse cocktails"
-          operations:
-            - method: GET
-              name: search-cocktails
-              description: "Search for cocktails by name"
-              call: "cocktaildb.search-cocktails"
-              with:
-                s: "rest.s"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-        - path: /v1/cocktails/random
-          name: random-cocktail
-          description: "Get a random cocktail"
-          operations:
-            - method: GET
-              name: get-random-cocktail
-              description: "Retrieve a random cocktail recipe"
-              call: "cocktaildb.get-random-cocktail"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-        - path: /v1/cocktails/{id}
-          name: cocktail-detail
-          description: "Full cocktail recipe details"
-          operations:
-            - method: GET
-              name: lookup-cocktail
-              description: "Look up a cocktail by ID"
-              call: "cocktaildb.lookup-by-id"
-              with:
-                i: "rest.id"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-        - path: /v1/cocktails/filter
-          name: cocktail-filter
-          description: "Filter cocktails by attributes"
-          operations:
-            - method: GET
-              name: filter-cocktails
-              description: "Filter cocktails by ingredient, category, glass, or alcoholic status"
-              call: "cocktaildb.filter-cocktails"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-        - path: /v1/categories
-          name: categories
-          description: "List drink categories"
-          operations:
-            - method: GET
-              name: list-categories
-              description: "List all drink categories"
-              call: "cocktaildb.list-filter-values"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-
-    - type: mcp
-      port: 9090
-      namespace: cocktail-discovery-mcp
-      transport: http
-      description: "MCP server for AI-assisted cocktail discovery and recipe recommendations."
-      tools:
-        - name: search-cocktails
-          description: "Search for cocktails by name (e.g. margarita, mojito)"
-          hints:
-            readOnly: true
-            openWorld: true
-          call: "cocktaildb.search-cocktails"
-          with:
-            s: "tools.name"
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: browse-cocktails-by-letter
-          description: "Browse all cocktails starting with a specific letter"
-          hints:
-            readOnly: true
-            openWorld: true
-          call: "cocktaildb.search-cocktails"
-          with:
-            f: "tools.letter"
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: search-ingredients
-          description: "Search for a cocktail ingredient by name"
-          hints:
-            readOnly: true
-            openWorld: true
-          call: "cocktaildb.search-cocktails"
-          with:
-            i: "tools.ingredient"
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: lookup-cocktail-by-id
-          description: "Get full recipe details for a cocktail by its ID"
-          hints:
-            readOnly: true
-            openWorld: true
-          call: "cocktaildb.lookup-by-id"
-          with:
-            i: "tools.id"
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: lookup-ingredient-by-id
-          description: "Get details for a specific ingredient by its ID"
-          hints:
-            readOnly: true
-            openWorld: true
-          call: "cocktaildb.lookup-by-id"
-          with:
-            iid: "tools.ingredient_id"
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: get-random-cocktail
-          description: "Get a completely random cocktail recipe for inspiration"
-          hints:
-            readOnly: true
-            openWorld: true
-          call: "cocktaildb.get-random-cocktail"
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: filter-by-ingredient
-          description: "Find cocktails that use a specific ingredient"
-          hints:
-            readOnly: true
-            openWorld: true
-          call: "cocktaildb.filter-cocktails"
-          with:
-            i: "tools.ingredient"
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: filter-by-alcoholic-status
-          description: "Filter cocktails by alcoholic or non-alcoholic status"
-          hints:
-            readOnly: true
-            openWorld: true
-          call: "cocktaildb.filter-cocktails"
-          with:
-            a: "tools.status"
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: filter-by-category
-          description: "Filter cocktails by category (e.g. Cocktail, Shot, Punch)"
-          hints:
-            readOnly: true
-            openWorld: true
-          call: "cocktaildb.filter-cocktails"
-          with:
-            c: "tools.category"
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: filter-by-glass-type
-          description: "Filter cocktails by glass type (e.g. Cocktail glass, Highball glass)"
-          hints:
-            readOnly: true
-            openWorld: true
-          call: "cocktaildb.filter-cocktails"
-          with:
-            g: "tools.glass"
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: list-categories
-          description: "List all available drink categories"
-          hints:
-            readOnly: true
-            openWorld: true
-          call: "cocktaildb.list-filter-values"
-          with:
-            c: list
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: list-glass-types
-          description: "List all available glass types"
-          hints:
-            readOnly: true
-            openWorld: true
-          call: "cocktaildb.list-filter-values"
-          with:
-            g: list
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: list-ingredients
-          description: "List all available ingredients in the database"
-          hints:
-            readOnly: true
-            openWorld: true
-          call: "cocktaildb.list-filter-values"
-          with:
-            i: list
-          outputParameters:
-            - type: object
-              mapping: "$."
+  - type: rest
+    port: 8080
+    namespace: cocktail-discovery-api
+    description: Unified REST API for cocktail discovery and recipe lookup.
+    resources:
+    - path: /v1/cocktails
+      name: cocktails
+      description: Search and browse cocktails
+      operations:
+      - method: GET
+        name: search-cocktails
+        description: Search for cocktails by name
+        call: cocktaildb.search-cocktails
+        with:
+          s: rest.s
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/cocktails/random
+      name: random-cocktail
+      description: Get a random cocktail
+      operations:
+      - method: GET
+        name: get-random-cocktail
+        description: Retrieve a random cocktail recipe
+        call: cocktaildb.get-random-cocktail
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/cocktails/{id}
+      name: cocktail-detail
+      description: Full cocktail recipe details
+      operations:
+      - method: GET
+        name: lookup-cocktail
+        description: Look up a cocktail by ID
+        call: cocktaildb.lookup-by-id
+        with:
+          i: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/cocktails/filter
+      name: cocktail-filter
+      description: Filter cocktails by attributes
+      operations:
+      - method: GET
+        name: filter-cocktails
+        description: Filter cocktails by ingredient, category, glass, or alcoholic status
+        call: cocktaildb.filter-cocktails
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/categories
+      name: categories
+      description: List drink categories
+      operations:
+      - method: GET
+        name: list-categories
+        description: List all drink categories
+        call: cocktaildb.list-filter-values
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    port: 9090
+    namespace: cocktail-discovery-mcp
+    transport: http
+    description: MCP server for AI-assisted cocktail discovery and recipe recommendations.
+    tools:
+    - name: search-cocktails
+      description: Search for cocktails by name (e.g. margarita, mojito)
+      hints:
+        readOnly: true
+        openWorld: true
+      call: cocktaildb.search-cocktails
+      with:
+        s: tools.name
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: browse-cocktails-by-letter
+      description: Browse all cocktails starting with a specific letter
+      hints:
+        readOnly: true
+        openWorld: true
+      call: cocktaildb.search-cocktails
+      with:
+        f: tools.letter
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: search-ingredients
+      description: Search for a cocktail ingredient by name
+      hints:
+        readOnly: true
+        openWorld: true
+      call: cocktaildb.search-cocktails
+      with:
+        i: tools.ingredient
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: lookup-cocktail-by-id
+      description: Get full recipe details for a cocktail by its ID
+      hints:
+        readOnly: true
+        openWorld: true
+      call: cocktaildb.lookup-by-id
+      with:
+        i: tools.id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: lookup-ingredient-by-id
+      description: Get details for a specific ingredient by its ID
+      hints:
+        readOnly: true
+        openWorld: true
+      call: cocktaildb.lookup-by-id
+      with:
+        iid: tools.ingredient_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-random-cocktail
+      description: Get a completely random cocktail recipe for inspiration
+      hints:
+        readOnly: true
+        openWorld: true
+      call: cocktaildb.get-random-cocktail
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: filter-by-ingredient
+      description: Find cocktails that use a specific ingredient
+      hints:
+        readOnly: true
+        openWorld: true
+      call: cocktaildb.filter-cocktails
+      with:
+        i: tools.ingredient
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: filter-by-alcoholic-status
+      description: Filter cocktails by alcoholic or non-alcoholic status
+      hints:
+        readOnly: true
+        openWorld: true
+      call: cocktaildb.filter-cocktails
+      with:
+        a: tools.status
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: filter-by-category
+      description: Filter cocktails by category (e.g. Cocktail, Shot, Punch)
+      hints:
+        readOnly: true
+        openWorld: true
+      call: cocktaildb.filter-cocktails
+      with:
+        c: tools.category
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: filter-by-glass-type
+      description: Filter cocktails by glass type (e.g. Cocktail glass, Highball glass)
+      hints:
+        readOnly: true
+        openWorld: true
+      call: cocktaildb.filter-cocktails
+      with:
+        g: tools.glass
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-categories
+      description: List all available drink categories
+      hints:
+        readOnly: true
+        openWorld: true
+      call: cocktaildb.list-filter-values
+      with:
+        c: list
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-glass-types
+      description: List all available glass types
+      hints:
+        readOnly: true
+        openWorld: true
+      call: cocktaildb.list-filter-values
+      with:
+        g: list
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-ingredients
+      description: List all available ingredients in the database
+      hints:
+        readOnly: true
+        openWorld: true
+      call: cocktaildb.list-filter-values
+      with:
+        i: list
+      outputParameters:
+      - type: object
+        mapping: $.
