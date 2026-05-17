@@ -34,7 +34,7 @@ apis:
         url: https://www.thecocktaildb.com/api.php
       - type: OpenAPI
         url: openapi/thecocktaildb-openapi.yml
-      - type: Sign Up
+      - type: SignUp
         url: https://www.thecocktaildb.com/signup.php
       - type: JSONSchema
         url: json-schema/thecocktaildb-drink-schema.json
@@ -42,7 +42,7 @@ apis:
       - type: JSONStructure
         url: json-structure/thecocktaildb-drink-structure.json
         title: Drink Structure
-      - type: JSON-LD
+      - type: JSONLD
         url: json-ld/thecocktaildb-context.jsonld
         title: TheCocktailDB JSON-LD Context
 common:
@@ -50,7 +50,7 @@ common:
     url: https://www.thecocktaildb.com/
   - type: Documentation
     url: https://www.thecocktaildb.com/api.php
-  - type: Sign Up
+  - type: SignUp
     url: https://www.thecocktaildb.com/signup.php
   - type: Pricing
     url: https://www.thecocktaildb.com/pricing
