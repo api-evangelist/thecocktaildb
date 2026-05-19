@@ -1,0 +1,94 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: TheCocktailDB API — List
+  description: 'TheCocktailDB API — List. 1 operations. Lead operation: TheCocktailDB List Categories, Glasses, Ingredients,
+    or Alcoholic Filters. Self-contained Naftiko capability covering one Thecocktaildb business surface.'
+  tags:
+  - Thecocktaildb
+  - List
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    THECOCKTAILDB_API_KEY: THECOCKTAILDB_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: thecocktaildb-list
+    baseUri: https://www.thecocktaildb.com/api/json/v1/1
+    description: TheCocktailDB API — List business capability. Self-contained, no shared references.
+    resources:
+    - name: list.php
+      path: /list.php
+      operations:
+      - name: listcategories
+        method: GET
+        description: TheCocktailDB List Categories, Glasses, Ingredients, or Alcoholic Filters
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: c
+          in: query
+          type: string
+          description: Set to 'list' to retrieve all categories
+        - name: g
+          in: query
+          type: string
+          description: Set to 'list' to retrieve all glass types
+        - name: i
+          in: query
+          type: string
+          description: Set to 'list' to retrieve all ingredients
+        - name: a
+          in: query
+          type: string
+          description: Set to 'list' to retrieve all alcoholic filter options
+  exposes:
+  - type: rest
+    namespace: thecocktaildb-list-rest
+    port: 8080
+    description: REST adapter for TheCocktailDB API — List. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/list-php
+      name: list-php
+      description: REST surface for list.php.
+      operations:
+      - method: GET
+        name: listcategories
+        description: TheCocktailDB List Categories, Glasses, Ingredients, or Alcoholic Filters
+        call: thecocktaildb-list.listcategories
+        with:
+          c: rest.c
+          g: rest.g
+          i: rest.i
+          a: rest.a
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: thecocktaildb-list-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for TheCocktailDB API — List. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: thecocktaildb-list-categories-glasses-ingredients
+      description: TheCocktailDB List Categories, Glasses, Ingredients, or Alcoholic Filters
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: thecocktaildb-list.listcategories
+      with:
+        c: tools.c
+        g: tools.g
+        i: tools.i
+        a: tools.a
+      outputParameters:
+      - type: object
+        mapping: $.

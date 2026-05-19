@@ -1,0 +1,88 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: TheCocktailDB API — Search
+  description: 'TheCocktailDB API — Search. 1 operations. Lead operation: TheCocktailDB Search Cocktails by Name or First
+    Letter. Self-contained Naftiko capability covering one Thecocktaildb business surface.'
+  tags:
+  - Thecocktaildb
+  - Search
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    THECOCKTAILDB_API_KEY: THECOCKTAILDB_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: thecocktaildb-search
+    baseUri: https://www.thecocktaildb.com/api/json/v1/1
+    description: TheCocktailDB API — Search business capability. Self-contained, no shared references.
+    resources:
+    - name: search.php
+      path: /search.php
+      operations:
+      - name: searchcocktailsbyname
+        method: GET
+        description: TheCocktailDB Search Cocktails by Name or First Letter
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: s
+          in: query
+          type: string
+          description: Cocktail name to search (e.g. margarita, mojito)
+        - name: f
+          in: query
+          type: string
+          description: First letter to browse cocktails alphabetically (single letter a-z)
+        - name: i
+          in: query
+          type: string
+          description: Ingredient name to search
+  exposes:
+  - type: rest
+    namespace: thecocktaildb-search-rest
+    port: 8080
+    description: REST adapter for TheCocktailDB API — Search. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/search-php
+      name: search-php
+      description: REST surface for search.php.
+      operations:
+      - method: GET
+        name: searchcocktailsbyname
+        description: TheCocktailDB Search Cocktails by Name or First Letter
+        call: thecocktaildb-search.searchcocktailsbyname
+        with:
+          s: rest.s
+          f: rest.f
+          i: rest.i
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: thecocktaildb-search-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for TheCocktailDB API — Search. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: thecocktaildb-search-cocktails-name-first
+      description: TheCocktailDB Search Cocktails by Name or First Letter
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: thecocktaildb-search.searchcocktailsbyname
+      with:
+        s: tools.s
+        f: tools.f
+        i: tools.i
+      outputParameters:
+      - type: object
+        mapping: $.
