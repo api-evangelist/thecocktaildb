@@ -3,16 +3,21 @@ specificationVersion: '1.0'
 schema: https://www.finops.org/framework/
 provider: TheCocktailDB
 providerId: thecocktaildb
-created: '2026-05-04'
-modified: '2026-05-04'
+created: '2026-06-13'
+modified: '2026-06-13'
 reconciled: true
 tags:
   - FinOps
   - FOCUS
   - Recipes / Open Data
-description: FOCUS-aligned FinOps for TheCocktailDB.
+  - Cocktails
+description: >-
+  FOCUS-aligned FinOps profile for TheCocktailDB. The service is free and Patreon-funded.
+  Primary cost consideration is the optional Patreon membership for production API keys.
+  No metered billing or per-request charges apply.
 sources:
   - https://www.thecocktaildb.com/api.php
+  - https://www.thecocktaildb.com/faq.php
 alignedWith:
   framework: FinOps Foundation Framework
   frameworkUrl: https://www.finops.org/framework/
@@ -25,6 +30,9 @@ billingModel:
   pricingCategory: Free / Donation-Funded
   billingFrequency: Monthly
   billingCurrency: USD
+  notes: >-
+    No per-request or volume-based charges. Cost is limited to optional Patreon
+    membership (varies by tier) for production API key access.
 focusColumns:
   ServiceName: TheCocktailDB
   ServiceCategory: Recipes / Open Data
@@ -35,12 +43,26 @@ meters:
   - name: api_calls
     unit: call
     aggregation: sum
+    costPerUnit: '0.00'
+    notes: No cost per API call; service is free
+  - name: patreon_membership
+    unit: month
+    aggregation: sum
+    costPerUnit: varies
+    notes: Optional Patreon membership for production API key access
 principles:
   - name: Visibility
-    description: Track TheCocktailDB consumption monthly.
+    description: Track TheCocktailDB API consumption monthly to monitor usage patterns.
   - name: Allocation
-    description: Tag usage to teams/cost centers for chargeback.
+    description: Tag usage to teams or cost centers for internal chargeback if Patreon cost is shared.
   - name: Optimization
-    description: Right-size; reclaim unused entitlements.
+    description: Cache responses to reduce redundant API calls; leverage the unlimited free tier where possible.
   - name: Accountability
-    description: Set spend alerts; quarterly review.
+    description: Review Patreon membership status quarterly; ensure commercial use complies with terms.
+costOptimization:
+  - strategy: Cache API responses
+    description: Cache cocktail and ingredient data locally to minimize redundant API calls
+  - strategy: Use free tier for non-commercial projects
+    description: The free tier with test key "1" is fully functional for personal and educational use
+  - strategy: Batch lookups
+    description: Retrieve full cocktail details by ID rather than making multiple search calls

@@ -3,22 +3,40 @@ specificationVersion: '0.1'
 schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
 provider: TheCocktailDB
 providerId: thecocktaildb
-created: '2026-05-04'
-modified: '2026-05-04'
+created: '2026-06-13'
+modified: '2026-06-13'
 reconciled: true
 tags:
   - Rate Limiting
   - Recipes / Open Data
-  - Niche
-description: TheCocktailDB rate limits keep the public API usable for everyone.
+  - Cocktails
+description: >-
+  TheCocktailDB advertises unlimited API usage with no official rate limits enforced.
+  The FAQ states "No limits, the API is unlimited usage." Patreon supporters receive
+  production keys with explicit unlimited access. Best practice is to cache responses
+  to reduce server load on this volunteer-run, non-profit service.
 sources:
   - https://www.thecocktaildb.com/api.php
+  - https://www.thecocktaildb.com/faq.php
 headers: {}
 responseCodes:
   throttled: 429
 limits:
-  - name: Public API
-    scope: ip
-    metric: requests_per_minute
-    limit: varies (typically 60-300)
-    notes: Be a good citizen; cache responses.
+  - name: Free Public API
+    scope: global
+    metric: requests
+    limit: unlimited
+    notes: >-
+      No official rate limits enforced per FAQ ("No limits, the API is unlimited usage").
+      Good-citizen caching of responses is strongly encouraged to support the non-profit service.
+  - name: Patreon Supporter API
+    scope: global
+    metric: requests
+    limit: unlimited
+    notes: >-
+      Production API keys for Patreon supporters explicitly provide unlimited API usage
+      with no rate limits.
+recommendations:
+  - Cache API responses locally to reduce load on the volunteer-run service
+  - Avoid hammering the API with unnecessary repeated requests
+  - Use the full database download option if bulk data access is needed

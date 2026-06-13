@@ -3,22 +3,29 @@ specificationVersion: '0.1'
 schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
 provider: TheCocktailDB
 providerId: thecocktaildb
-created: '2026-05-04'
-modified: '2026-05-04'
+created: '2026-06-13'
+modified: '2026-06-13'
 reconciled: true
 tags:
   - Recipes / Open Data
-  - Niche
-description: TheCocktailDB is a niche API. Free public cocktail recipe API. Patreon supporters get premium
-  API key with no rate limits.
+  - Cocktails
+  - Free
+description: >-
+  TheCocktailDB operates on a free and Patreon-supported model. The free tier provides full API access
+  using the public test key "1" for development and non-commercial use. Production API keys for public
+  commercial apps are provided to Patreon supporters. No traditional tiered pricing exists.
 sources:
   - https://www.thecocktaildb.com/api.php
+  - https://www.thecocktaildb.com/faq.php
 plans:
   - id: thecocktaildb-free
     name: Free Public API
-    type: freemium
-    description: Free public cocktail recipe API. Patreon supporters get premium API key with no rate
-      limits.
+    type: free
+    description: >-
+      Free access using test API key "1" for development, educational, and personal projects.
+      Includes all standard cocktail search and lookup endpoints. No authentication required.
+      Not for use in public app store releases.
+    url: https://www.thecocktaildb.com/api.php
     entries:
       - label: Per request
         name: request
@@ -31,6 +38,44 @@ plans:
         price: '0.00'
         userMultiplied: false
     elements:
-      - name: Free for personal / educational / small-scale use
-      - name: May require attribution
-      - name: May have rate limits
+      - name: Search cocktails by name, first letter, and ingredient
+      - name: Lookup cocktails and ingredients by ID
+      - name: Random cocktail endpoint
+      - name: Filter by ingredient, alcoholic status, category, and glass type
+      - name: List available categories, glasses, ingredients, and filters
+      - name: Cocktail images in multiple sizes (200x200, 350x350, 500x500px)
+      - name: Ingredient images in multiple sizes
+      - name: JSON response format
+      - name: No authentication required for test key
+      - name: Single ingredient filter only
+      - name: Database listing limited to 100 items
+      - name: No Popular or Recent cocktail lookups
+  - id: thecocktaildb-patreon
+    name: Patreon Supporter (Premium)
+    type: freemium
+    description: >-
+      For commercial apps and production releases. Patreon supporters receive a production API key
+      with access to premium endpoints. Supports the non-profit crowd-sourced database project.
+      API keys typically issued within 24 hours of application.
+    url: https://www.patreon.com/thedatadb
+    entries:
+      - label: Per request
+        name: request
+        type: metered
+        metric: request
+        limit: -1
+        timeFrame: usage
+        geo: global
+        unit: 1
+        price: varies
+        userMultiplied: false
+    elements:
+      - name: Production API key for public app store releases
+      - name: Multiple ingredient filters (beta)
+      - name: Popular cocktail lookups
+      - name: Recent cocktail lookups
+      - name: Full database listing without 100-item limit
+      - name: Latest cocktail image API methods
+      - name: Random image API methods
+      - name: All Free tier features included
+      - name: Unlimited API usage - no rate limits
