@@ -1,0 +1,553 @@
+{
+  "item": [
+    {
+      "id": "bb262f50-4228-442c-8fb8-48d527d4c7cb",
+      "name": "Search",
+      "description": {
+        "content": "Search for cocktails and ingredients",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "01487c3d-cd8a-48e4-8f28-0270e991c03d",
+          "name": "TheCocktailDB Search Cocktails by Name or First Letter",
+          "request": {
+            "name": "TheCocktailDB Search Cocktails by Name or First Letter",
+            "description": {
+              "content": "Search for cocktails by name using the 's' parameter, or browse cocktails starting with a specific letter using the 'f' parameter. Use the 'i' parameter to search for an ingredient by name.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "search.php"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "s",
+                  "value": "<string>",
+                  "description": "Cocktail name to search (e.g. margarita, mojito)"
+                },
+                {
+                  "disabled": false,
+                  "key": "f",
+                  "value": "<string>",
+                  "description": "First letter to browse cocktails alphabetically (single letter a-z)"
+                },
+                {
+                  "disabled": false,
+                  "key": "i",
+                  "value": "<string>",
+                  "description": "Ingredient name to search"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "95086a27-a7fd-4e18-8ac4-c4d4050cdb1d",
+              "name": "Successful response with cocktail or ingredient list",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "search.php"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "s",
+                      "value": "margarita"
+                    },
+                    {
+                      "key": "f",
+                      "value": "a"
+                    },
+                    {
+                      "key": "i",
+                      "value": "vodka"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"drinks\": [\n    {\n      \"idDrink\": \"11007\",\n      \"strDrink\": \"Margarita\",\n      \"strCategory\": \"Ordinary Drink\",\n      \"strAlcoholic\": \"Alcoholic\",\n      \"strGlass\": \"Cocktail glass\",\n      \"strInstructions\": \"Rub the rim of the glass with the lime slice to make the salt stick to it. Take care to moisten only the outer rim and sprinkle the salt on it. The salt should present to the lips of the imbiber and never mix into the cocktail. Shake the other ingredients with ice, then carefully pour into the glass.\",\n      \"strDrinkThumb\": \"https://www.thecocktaildb.com/images/media/drink/5noda61589575158.jpg\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "f8d7cc00-3f58-439b-bd71-d2888f33c8c8",
+      "name": "Lookup",
+      "description": {
+        "content": "Retrieve details by ID",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "ba6d4ec6-2df7-444d-87ea-fe1124130ff8",
+          "name": "TheCocktailDB Lookup Cocktail or Ingredient by ID",
+          "request": {
+            "name": "TheCocktailDB Lookup Cocktail or Ingredient by ID",
+            "description": {
+              "content": "Look up a full cocktail detail by its ID using the 'i' parameter, or look up an ingredient by its ingredient ID using the 'iid' parameter.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "lookup.php"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "i",
+                  "value": "<string>",
+                  "description": "Cocktail ID to look up"
+                },
+                {
+                  "disabled": false,
+                  "key": "iid",
+                  "value": "<string>",
+                  "description": "Ingredient ID to look up"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "84ab37a3-2f6e-4998-945e-3410215a6f48",
+              "name": "Cocktail or ingredient details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "lookup.php"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "i",
+                      "value": "11007"
+                    },
+                    {
+                      "key": "iid",
+                      "value": "552"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"drinks\": [\n    {\n      \"idDrink\": \"11007\",\n      \"strDrink\": \"Margarita\",\n      \"strCategory\": \"Ordinary Drink\",\n      \"strAlcoholic\": \"Alcoholic\",\n      \"strGlass\": \"Cocktail glass\",\n      \"strInstructions\": \"Shake all ingredients together with ice.\",\n      \"strDrinkThumb\": \"https://www.thecocktaildb.com/images/media/drink/5noda61589575158.jpg\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e819bb4a-5f0b-4b36-8b8f-cc1bb6781b75",
+          "name": "TheCocktailDB Get a Random Cocktail",
+          "request": {
+            "name": "TheCocktailDB Get a Random Cocktail",
+            "description": {
+              "content": "Retrieve a single random cocktail with full details.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "random.php"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9e7600e6-f754-4118-b4ff-2be3fdbc61d9",
+              "name": "A random cocktail",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "random.php"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"drinks\": [\n    {\n      \"idDrink\": \"15346\",\n      \"strDrink\": \"Aviation\",\n      \"strCategory\": \"Cocktail\",\n      \"strAlcoholic\": \"Alcoholic\",\n      \"strGlass\": \"Cocktail glass\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "d7167599-5991-4de0-a1f3-a4780c66cb3c",
+      "name": "Filter",
+      "description": {
+        "content": "Filter cocktails by attributes",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "8d2e5526-04b5-430b-b980-99c97b52fa59",
+          "name": "TheCocktailDB Filter Cocktails by Attribute",
+          "request": {
+            "name": "TheCocktailDB Filter Cocktails by Attribute",
+            "description": {
+              "content": "Filter cocktails by a single ingredient ('i'), alcoholic content ('a'), category ('c'), or glass type ('g'). Multi-ingredient filtering is available to premium subscribers.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "filter.php"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "i",
+                  "value": "<string>",
+                  "description": "Filter by ingredient name (e.g. vodka)"
+                },
+                {
+                  "disabled": false,
+                  "key": "a",
+                  "value": "<string>",
+                  "description": "Filter by alcoholic status"
+                },
+                {
+                  "disabled": false,
+                  "key": "c",
+                  "value": "<string>",
+                  "description": "Filter by category"
+                },
+                {
+                  "disabled": false,
+                  "key": "g",
+                  "value": "<string>",
+                  "description": "Filter by glass type"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6139e23b-b6f7-4869-b4fd-ebd92e9c7f0e",
+              "name": "List of matching cocktails (summary view)",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "filter.php"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "i",
+                      "value": "vodka"
+                    },
+                    {
+                      "key": "a",
+                      "value": "Alcoholic"
+                    },
+                    {
+                      "key": "c",
+                      "value": "Cocktail"
+                    },
+                    {
+                      "key": "g",
+                      "value": "Cocktail glass"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"drinks\": [\n    {\n      \"strDrink\": \"Margarita\",\n      \"strDrinkThumb\": \"https://www.thecocktaildb.com/images/media/drink/5noda61589575158.jpg\",\n      \"idDrink\": \"11007\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "69ab16e9-bcd5-490e-8f75-aecb4c6c8ecc",
+      "name": "List",
+      "description": {
+        "content": "List available categories, glasses, and ingredients",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "8a035bc3-3f39-413d-af18-9b932f6c8cbc",
+          "name": "TheCocktailDB List Categories, Glasses, Ingredients, or Alcoholic Filters",
+          "request": {
+            "name": "TheCocktailDB List Categories, Glasses, Ingredients, or Alcoholic Filters",
+            "description": {
+              "content": "List all available categories ('c=list'), glasses ('g=list'), ingredients ('i=list'), or alcoholic filters ('a=list').",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "list.php"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "c",
+                  "value": "<string>",
+                  "description": "Set to 'list' to retrieve all categories"
+                },
+                {
+                  "disabled": false,
+                  "key": "g",
+                  "value": "<string>",
+                  "description": "Set to 'list' to retrieve all glass types"
+                },
+                {
+                  "disabled": false,
+                  "key": "i",
+                  "value": "<string>",
+                  "description": "Set to 'list' to retrieve all ingredients"
+                },
+                {
+                  "disabled": false,
+                  "key": "a",
+                  "value": "<string>",
+                  "description": "Set to 'list' to retrieve all alcoholic filter options"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6037b253-48cd-4dd0-9940-71301b41da36",
+              "name": "List of available filter values",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "list.php"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "c",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "g",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "i",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "a",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"drinks\": [\n    {\n      \"strCategory\": \"Ordinary Drink\"\n    },\n    {\n      \"strCategory\": \"Cocktail\"\n    },\n    {\n      \"strCategory\": \"Shake\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://www.thecocktaildb.com/api/json/v1/1",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "f3131a5c-7a0c-4caa-a35c-c5e53f44c284",
+    "name": "TheCocktailDB API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "An open, crowd-sourced database of cocktails and drinks from around the world with a free API. Search cocktails by name, ingredient, category, glass type, or alcoholic content. Includes detailed recipes, measurements, and images.",
+      "type": "text/plain"
+    }
+  }
+}

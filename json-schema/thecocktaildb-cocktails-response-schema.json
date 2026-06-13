@@ -9,7 +9,7 @@
       "type": "array",
       "description": "Array of cocktail objects; null if no results found",
       "items": {
-        "$ref": "#/components/schemas/Drink"
+        "$ref": "thecocktaildb-drink-schema.json"
       },
       "nullable": true
     }

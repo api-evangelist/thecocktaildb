@@ -1,0 +1,183 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "TheCocktailDB API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Search",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "TheCocktailDB Search Cocktails by Name or First Letter",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://www.thecocktaildb.com/api/json/v1/1/search.php",
+            "params": [
+              {
+                "name": "s",
+                "value": "",
+                "type": "query",
+                "description": "Cocktail name to search (e.g. margarita, mojito)"
+              },
+              {
+                "name": "f",
+                "value": "",
+                "type": "query",
+                "description": "First letter to browse cocktails alphabetically (single letter a-z)"
+              },
+              {
+                "name": "i",
+                "value": "",
+                "type": "query",
+                "description": "Ingredient name to search"
+              }
+            ]
+          },
+          "docs": "Search for cocktails by name using the 's' parameter, or browse cocktails starting with a specific letter using the 'f' parameter. Use the 'i' parameter to search for an ingredient by name."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Lookup",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "TheCocktailDB Lookup Cocktail or Ingredient by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://www.thecocktaildb.com/api/json/v1/1/lookup.php",
+            "params": [
+              {
+                "name": "i",
+                "value": "",
+                "type": "query",
+                "description": "Cocktail ID to look up"
+              },
+              {
+                "name": "iid",
+                "value": "",
+                "type": "query",
+                "description": "Ingredient ID to look up"
+              }
+            ]
+          },
+          "docs": "Look up a full cocktail detail by its ID using the 'i' parameter, or look up an ingredient by its ingredient ID using the 'iid' parameter."
+        },
+        {
+          "info": {
+            "name": "TheCocktailDB Get a Random Cocktail",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://www.thecocktaildb.com/api/json/v1/1/random.php"
+          },
+          "docs": "Retrieve a single random cocktail with full details."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Filter",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "TheCocktailDB Filter Cocktails by Attribute",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://www.thecocktaildb.com/api/json/v1/1/filter.php",
+            "params": [
+              {
+                "name": "i",
+                "value": "",
+                "type": "query",
+                "description": "Filter by ingredient name (e.g. vodka)"
+              },
+              {
+                "name": "a",
+                "value": "",
+                "type": "query",
+                "description": "Filter by alcoholic status"
+              },
+              {
+                "name": "c",
+                "value": "",
+                "type": "query",
+                "description": "Filter by category"
+              },
+              {
+                "name": "g",
+                "value": "",
+                "type": "query",
+                "description": "Filter by glass type"
+              }
+            ]
+          },
+          "docs": "Filter cocktails by a single ingredient ('i'), alcoholic content ('a'), category ('c'), or glass type ('g'). Multi-ingredient filtering is available to premium subscribers."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "List",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "TheCocktailDB List Categories, Glasses, Ingredients, or Alcoholic Filters",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://www.thecocktaildb.com/api/json/v1/1/list.php",
+            "params": [
+              {
+                "name": "c",
+                "value": "",
+                "type": "query",
+                "description": "Set to 'list' to retrieve all categories"
+              },
+              {
+                "name": "g",
+                "value": "",
+                "type": "query",
+                "description": "Set to 'list' to retrieve all glass types"
+              },
+              {
+                "name": "i",
+                "value": "",
+                "type": "query",
+                "description": "Set to 'list' to retrieve all ingredients"
+              },
+              {
+                "name": "a",
+                "value": "",
+                "type": "query",
+                "description": "Set to 'list' to retrieve all alcoholic filter options"
+              }
+            ]
+          },
+          "docs": "List all available categories ('c=list'), glasses ('g=list'), ingredients ('i=list'), or alcoholic filters ('a=list')."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
