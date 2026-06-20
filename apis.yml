@@ -2,7 +2,7 @@ aid: thecocktaildb
 name: TheCocktailDB
 description: An open, crowd-sourced database of cocktails and drinks from around the world with a free API providing drink recipes, ingredients, glass types, categories, and cocktail images.
 type: Index
-image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
 tags:
   - Cocktails
   - Drinks
