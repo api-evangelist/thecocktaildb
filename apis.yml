@@ -33,6 +33,8 @@ apis:
       - type: Documentation
         url: https://www.thecocktaildb.com/api.php
 common:
+  - type: AgenticAccess
+    url: agentic-access/thecocktaildb-agentic-access.yml
   - type: DomainSecurity
     url: security/thecocktaildb-domain-security.yml
   - type: Website
