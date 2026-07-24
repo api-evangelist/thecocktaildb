@@ -1,0 +1,88 @@
+openapi: 3.0.3
+info:
+  title: TheCocktailDB Filter List API
+  description: An open, crowd-sourced database of cocktails and drinks from around the world with a free API. Search cocktails by name, ingredient, category, glass type, or alcoholic content. Includes detailed recipes, measurements, and images.
+  version: '1.0'
+  contact:
+    url: https://www.thecocktaildb.com/
+  x-generated-from: documentation
+servers:
+- url: https://www.thecocktaildb.com/api/json/v1/1
+  description: Production API server (free tier with API key 1)
+security: []
+tags:
+- name: List
+  description: List available categories, glasses, and ingredients
+paths:
+  /list.php:
+    get:
+      operationId: listCategories
+      summary: TheCocktailDB List Categories, Glasses, Ingredients, or Alcoholic Filters
+      description: List all available categories ('c=list'), glasses ('g=list'), ingredients ('i=list'), or alcoholic filters ('a=list').
+      tags:
+      - List
+      parameters:
+      - name: c
+        in: query
+        description: Set to 'list' to retrieve all categories
+        required: false
+        schema:
+          type: string
+          enum:
+          - list
+      - name: g
+        in: query
+        description: Set to 'list' to retrieve all glass types
+        required: false
+        schema:
+          type: string
+          enum:
+          - list
+      - name: i
+        in: query
+        description: Set to 'list' to retrieve all ingredients
+        required: false
+        schema:
+          type: string
+          enum:
+          - list
+      - name: a
+        in: query
+        description: Set to 'list' to retrieve all alcoholic filter options
+        required: false
+        schema:
+          type: string
+          enum:
+          - list
+      responses:
+        '200':
+          description: List of available filter values
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListResponse'
+              examples:
+                ListCategories200Example:
+                  summary: Default listCategories 200 response
+                  x-microcks-default: true
+                  value:
+                    drinks:
+                    - strCategory: Ordinary Drink
+                    - strCategory: Cocktail
+                    - strCategory: Shake
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    ListResponse:
+      type: object
+      description: List of available filter values
+      properties:
+        drinks:
+          type: array
+          description: Array of list items
+          items:
+            type: object
+            additionalProperties:
+              type: string

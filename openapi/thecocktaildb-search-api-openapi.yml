@@ -1,0 +1,187 @@
+openapi: 3.0.3
+info:
+  title: TheCocktailDB Filter Search API
+  description: An open, crowd-sourced database of cocktails and drinks from around the world with a free API. Search cocktails by name, ingredient, category, glass type, or alcoholic content. Includes detailed recipes, measurements, and images.
+  version: '1.0'
+  contact:
+    url: https://www.thecocktaildb.com/
+  x-generated-from: documentation
+servers:
+- url: https://www.thecocktaildb.com/api/json/v1/1
+  description: Production API server (free tier with API key 1)
+security: []
+tags:
+- name: Search
+  description: Search for cocktails and ingredients
+paths:
+  /search.php:
+    get:
+      operationId: searchCocktailsByName
+      summary: TheCocktailDB Search Cocktails by Name or First Letter
+      description: Search for cocktails by name using the 's' parameter, or browse cocktails starting with a specific letter using the 'f' parameter. Use the 'i' parameter to search for an ingredient by name.
+      tags:
+      - Search
+      parameters:
+      - name: s
+        in: query
+        description: Cocktail name to search (e.g. margarita, mojito)
+        required: false
+        schema:
+          type: string
+          example: margarita
+      - name: f
+        in: query
+        description: First letter to browse cocktails alphabetically (single letter a-z)
+        required: false
+        schema:
+          type: string
+          example: a
+      - name: i
+        in: query
+        description: Ingredient name to search
+        required: false
+        schema:
+          type: string
+          example: vodka
+      responses:
+        '200':
+          description: Successful response with cocktail or ingredient list
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CocktailsResponse'
+              examples:
+                SearchCocktailsByName200Example:
+                  summary: Default searchCocktailsByName 200 response
+                  x-microcks-default: true
+                  value:
+                    drinks:
+                    - idDrink: '11007'
+                      strDrink: Margarita
+                      strCategory: Ordinary Drink
+                      strAlcoholic: Alcoholic
+                      strGlass: Cocktail glass
+                      strInstructions: Rub the rim of the glass with the lime slice to make the salt stick to it. Take care to moisten only the outer rim and sprinkle the salt on it. The salt should present to the lips of the imbiber and never mix into the cocktail. Shake the other ingredients with ice, then carefully pour into the glass.
+                      strDrinkThumb: https://www.thecocktaildb.com/images/media/drink/5noda61589575158.jpg
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    Drink:
+      type: object
+      description: Full cocktail details including ingredients, instructions, and media
+      properties:
+        idDrink:
+          type: string
+          description: Unique cocktail identifier
+          example: '11007'
+        strDrink:
+          type: string
+          description: Cocktail name
+          example: Margarita
+        strDrinkAlternate:
+          type: string
+          description: Alternate name for the cocktail
+          nullable: true
+        strTags:
+          type: string
+          description: Comma-separated tags
+          nullable: true
+        strVideo:
+          type: string
+          description: Video URL
+          nullable: true
+        strCategory:
+          type: string
+          description: Category of drink
+          example: Ordinary Drink
+        strIBA:
+          type: string
+          description: IBA classification
+          nullable: true
+        strAlcoholic:
+          type: string
+          description: Whether the drink is alcoholic
+          enum:
+          - Alcoholic
+          - Non alcoholic
+          - Optional alcohol
+          example: Alcoholic
+        strGlass:
+          type: string
+          description: Type of glass
+          example: Cocktail glass
+        strInstructions:
+          type: string
+          description: Preparation instructions in English
+        strInstructionsES:
+          type: string
+          description: Preparation instructions in Spanish
+          nullable: true
+        strInstructionsDE:
+          type: string
+          description: Preparation instructions in German
+          nullable: true
+        strInstructionsFR:
+          type: string
+          description: Preparation instructions in French
+          nullable: true
+        strInstructionsIT:
+          type: string
+          description: Preparation instructions in Italian
+          nullable: true
+        strDrinkThumb:
+          type: string
+          description: Thumbnail image URL
+          example: https://www.thecocktaildb.com/images/media/drink/5noda61589575158.jpg
+        strIngredient1:
+          type: string
+          description: First ingredient
+          nullable: true
+        strIngredient2:
+          type: string
+          description: Second ingredient
+          nullable: true
+        strIngredient3:
+          type: string
+          description: Third ingredient
+          nullable: true
+        strMeasure1:
+          type: string
+          description: Measure for first ingredient
+          nullable: true
+        strMeasure2:
+          type: string
+          description: Measure for second ingredient
+          nullable: true
+        strMeasure3:
+          type: string
+          description: Measure for third ingredient
+          nullable: true
+        strImageSource:
+          type: string
+          description: Image source URL
+          nullable: true
+        strImageAttribution:
+          type: string
+          description: Image attribution
+          nullable: true
+        strCreativeCommonsConfirmed:
+          type: string
+          description: Whether image is Creative Commons confirmed
+          nullable: true
+        dateModified:
+          type: string
+          description: Date last modified
+          nullable: true
+    CocktailsResponse:
+      type: object
+      description: Response containing a list of cocktails
+      properties:
+        drinks:
+          type: array
+          description: Array of cocktail objects; null if no results found
+          items:
+            $ref: '#/components/schemas/Drink'
+          nullable: true

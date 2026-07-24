@@ -1,0 +1,97 @@
+openapi: 3.0.3
+info:
+  title: TheCocktailDB Filter API
+  description: An open, crowd-sourced database of cocktails and drinks from around the world with a free API. Search cocktails by name, ingredient, category, glass type, or alcoholic content. Includes detailed recipes, measurements, and images.
+  version: '1.0'
+  contact:
+    url: https://www.thecocktaildb.com/
+  x-generated-from: documentation
+servers:
+- url: https://www.thecocktaildb.com/api/json/v1/1
+  description: Production API server (free tier with API key 1)
+security: []
+tags:
+- name: Filter
+  description: Filter cocktails by attributes
+paths:
+  /filter.php:
+    get:
+      operationId: filterCocktails
+      summary: TheCocktailDB Filter Cocktails by Attribute
+      description: Filter cocktails by a single ingredient ('i'), alcoholic content ('a'), category ('c'), or glass type ('g'). Multi-ingredient filtering is available to premium subscribers.
+      tags:
+      - Filter
+      parameters:
+      - name: i
+        in: query
+        description: Filter by ingredient name (e.g. vodka)
+        required: false
+        schema:
+          type: string
+          example: vodka
+      - name: a
+        in: query
+        description: Filter by alcoholic status
+        required: false
+        schema:
+          type: string
+          enum:
+          - Alcoholic
+          - Non_Alcoholic
+          example: Alcoholic
+      - name: c
+        in: query
+        description: Filter by category
+        required: false
+        schema:
+          type: string
+          example: Cocktail
+      - name: g
+        in: query
+        description: Filter by glass type
+        required: false
+        schema:
+          type: string
+          example: Cocktail glass
+      responses:
+        '200':
+          description: List of matching cocktails (summary view)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FilterResponse'
+              examples:
+                FilterCocktails200Example:
+                  summary: Default filterCocktails 200 response
+                  x-microcks-default: true
+                  value:
+                    drinks:
+                    - strDrink: Margarita
+                      strDrinkThumb: https://www.thecocktaildb.com/images/media/drink/5noda61589575158.jpg
+                      idDrink: '11007'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    FilterResponse:
+      type: object
+      description: Filtered cocktail list with summary information only
+      properties:
+        drinks:
+          type: array
+          description: Array of cocktail summaries
+          items:
+            type: object
+            properties:
+              strDrink:
+                type: string
+                description: Cocktail name
+                example: Margarita
+              strDrinkThumb:
+                type: string
+                description: Thumbnail URL
+              idDrink:
+                type: string
+                description: Cocktail ID
+                example: '11007'
