@@ -2,7 +2,19 @@ aid: thecocktaildb
 name: TheCocktailDB
 description: An open, crowd-sourced database of cocktails and drinks from around the world with a free API providing drink recipes, ingredients, glass types, categories, and cocktail images.
 type: Index
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: freemium
+  onboarding: unknown
+  trial: false
+  try_now: false
+  public: false
+  label: Freemium
+  confidence: medium
+  source:
+  - plans
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/thecocktaildb.png
 tags:
   - Cocktails
   - Drinks
@@ -14,24 +26,64 @@ modified: '2026-06-13'
 url: https://raw.githubusercontent.com/api-evangelist/thecocktaildb/refs/heads/main/apis.yml
 specificationVersion: '0.19'
 apis:
-  - aid: thecocktaildb:thecocktaildb
-    name: TheCocktailDB API
-    description: >-
-      Free cocktail and drinks recipe database with a REST API providing drink recipes, ingredients, glass types,
-      categories, and cocktail images. Search cocktails by name, ingredient, category, glass type, or alcoholic
-      content. Look up full recipes with ingredients, measurements, instructions, and images. Free tier available
-      with public test API key. Production keys available to Patreon supporters.
-    humanURL: https://www.thecocktaildb.com/api.php
-    baseURL: https://www.thecocktaildb.com/api/json/v1/1
-    tags:
-      - Cocktails
-      - Drinks
-      - Recipes
-      - Food And Beverage
-      - Open Data
-    properties:
-      - type: Documentation
-        url: https://www.thecocktaildb.com/api.php
+- aid: thecocktaildb:thecocktaildb
+  name: TheCocktailDB API
+  description: >-
+    Free cocktail and drinks recipe database with a REST API providing drink recipes, ingredients, glass
+    types, categories, and cocktail images. Search cocktails by name, ingredient, category, glass type,
+    or alcoholic content. Look up full recipes with ingredients, measurements, instructions, and images.
+    Free tier available with public test API key. Production keys available to Patreon supporters.
+  humanURL: https://www.thecocktaildb.com/api.php
+  baseURL: https://www.thecocktaildb.com/api/json/v1/1
+  tags:
+  - Cocktails
+  - Drinks
+  - Recipes
+  - Food And Beverage
+  - Open Data
+  properties:
+  - type: Documentation
+    url: https://www.thecocktaildb.com/api.php
+- aid: thecocktaildb:thecocktaildb-filter-api
+  name: TheCocktailDB Filter API
+  description: Filter cocktails by attributes
+  humanURL: https://www.thecocktaildb.com/api.php
+  baseURL: https://www.thecocktaildb.com/api/json/v1/1
+  tags:
+  - Filter
+  properties:
+  - type: OpenAPI
+    url: openapi/thecocktaildb-filter-api-openapi.yml
+- aid: thecocktaildb:thecocktaildb-list-api
+  name: TheCocktailDB List API
+  description: List available categories, glasses, and ingredients
+  humanURL: https://www.thecocktaildb.com/api.php
+  baseURL: https://www.thecocktaildb.com/api/json/v1/1
+  tags:
+  - List
+  properties:
+  - type: OpenAPI
+    url: openapi/thecocktaildb-list-api-openapi.yml
+- aid: thecocktaildb:thecocktaildb-lookup-api
+  name: TheCocktailDB Lookup API
+  description: Retrieve details by ID
+  humanURL: https://www.thecocktaildb.com/api.php
+  baseURL: https://www.thecocktaildb.com/api/json/v1/1
+  tags:
+  - Lookup
+  properties:
+  - type: OpenAPI
+    url: openapi/thecocktaildb-lookup-api-openapi.yml
+- aid: thecocktaildb:thecocktaildb-search-api
+  name: TheCocktailDB Search API
+  description: Search for cocktails and ingredients
+  humanURL: https://www.thecocktaildb.com/api.php
+  baseURL: https://www.thecocktaildb.com/api/json/v1/1
+  tags:
+  - Search
+  properties:
+  - type: OpenAPI
+    url: openapi/thecocktaildb-search-api-openapi.yml
 common:
   - type: AgenticAccess
     url: agentic-access/thecocktaildb-agentic-access.yml
