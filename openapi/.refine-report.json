@@ -1,0 +1,20 @@
+{
+  "provider": "thecocktaildb",
+  "sources": [
+    "thecocktaildb-filter-api-openapi.yml",
+    "thecocktaildb-list-api-openapi.yml",
+    "thecocktaildb-lookup-api-openapi.yml",
+    "thecocktaildb-search-api-openapi.yml"
+  ],
+  "outputs": [
+    "thecocktaildb-filter-api-openapi.yml",
+    "thecocktaildb-list-api-openapi.yml",
+    "thecocktaildb-lookup-api-openapi.yml",
+    "thecocktaildb-search-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
