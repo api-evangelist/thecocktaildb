@@ -1,0 +1,194 @@
+{
+  "item": [
+    {
+      "id": "3015cdf7-9ade-4c17-8383-eea13e044040",
+      "name": "Lookup",
+      "description": {
+        "content": "Retrieve details by ID",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "a2d17bbd-0b40-4a80-84e4-091badb91884",
+          "name": "TheCocktailDB Lookup Cocktail or Ingredient by ID",
+          "request": {
+            "name": "TheCocktailDB Lookup Cocktail or Ingredient by ID",
+            "description": {
+              "content": "Look up a full cocktail detail by its ID using the 'i' parameter, or look up an ingredient by its ingredient ID using the 'iid' parameter.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "lookup.php"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "i",
+                  "value": "<string>",
+                  "description": "Cocktail ID to look up"
+                },
+                {
+                  "disabled": false,
+                  "key": "iid",
+                  "value": "<string>",
+                  "description": "Ingredient ID to look up"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8d823e85-d159-4459-93e0-b3da952b5965",
+              "name": "Cocktail or ingredient details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "lookup.php"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "i",
+                      "value": "11007"
+                    },
+                    {
+                      "key": "iid",
+                      "value": "552"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"drinks\": [\n    {\n      \"idDrink\": \"11007\",\n      \"strDrink\": \"Margarita\",\n      \"strCategory\": \"Ordinary Drink\",\n      \"strAlcoholic\": \"Alcoholic\",\n      \"strGlass\": \"Cocktail glass\",\n      \"strInstructions\": \"Shake all ingredients together with ice.\",\n      \"strDrinkThumb\": \"https://www.thecocktaildb.com/images/media/drink/5noda61589575158.jpg\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5747d340-65a5-4ab5-9522-39382b24aac6",
+          "name": "TheCocktailDB Get a Random Cocktail",
+          "request": {
+            "name": "TheCocktailDB Get a Random Cocktail",
+            "description": {
+              "content": "Retrieve a single random cocktail with full details.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "random.php"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b627452a-7f37-4d8c-b32d-6b25a55aae18",
+              "name": "A random cocktail",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "random.php"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"drinks\": [\n    {\n      \"idDrink\": \"15346\",\n      \"strDrink\": \"Aviation\",\n      \"strCategory\": \"Cocktail\",\n      \"strAlcoholic\": \"Alcoholic\",\n      \"strGlass\": \"Cocktail glass\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://www.thecocktaildb.com/api/json/v1/1",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "f795a1d4-71c4-4007-990b-e52837e3b157",
+    "name": "TheCocktailDB Filter Lookup API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "An open, crowd-sourced database of cocktails and drinks from around the world with a free API. Search cocktails by name, ingredient, category, glass type, or alcoholic content. Includes detailed recipes, measurements, and images.",
+      "type": "text/plain"
+    }
+  }
+}

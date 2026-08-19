@@ -1,0 +1,134 @@
+{
+  "item": [
+    {
+      "id": "0984a980-d464-4f6b-a33c-e4a7e643a384",
+      "name": "Search",
+      "description": {
+        "content": "Search for cocktails and ingredients",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "5d861f0d-53bd-48db-be68-ae54ce161ff1",
+          "name": "TheCocktailDB Search Cocktails by Name or First Letter",
+          "request": {
+            "name": "TheCocktailDB Search Cocktails by Name or First Letter",
+            "description": {
+              "content": "Search for cocktails by name using the 's' parameter, or browse cocktails starting with a specific letter using the 'f' parameter. Use the 'i' parameter to search for an ingredient by name.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "search.php"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "s",
+                  "value": "<string>",
+                  "description": "Cocktail name to search (e.g. margarita, mojito)"
+                },
+                {
+                  "disabled": false,
+                  "key": "f",
+                  "value": "<string>",
+                  "description": "First letter to browse cocktails alphabetically (single letter a-z)"
+                },
+                {
+                  "disabled": false,
+                  "key": "i",
+                  "value": "<string>",
+                  "description": "Ingredient name to search"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "bdde9e9c-a1af-4c7f-ab0a-29380635bdfa",
+              "name": "Successful response with cocktail or ingredient list",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "search.php"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "s",
+                      "value": "margarita"
+                    },
+                    {
+                      "key": "f",
+                      "value": "a"
+                    },
+                    {
+                      "key": "i",
+                      "value": "vodka"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"drinks\": [\n    {\n      \"idDrink\": \"11007\",\n      \"strDrink\": \"Margarita\",\n      \"strCategory\": \"Ordinary Drink\",\n      \"strAlcoholic\": \"Alcoholic\",\n      \"strGlass\": \"Cocktail glass\",\n      \"strInstructions\": \"Rub the rim of the glass with the lime slice to make the salt stick to it. Take care to moisten only the outer rim and sprinkle the salt on it. The salt should present to the lips of the imbiber and never mix into the cocktail. Shake the other ingredients with ice, then carefully pour into the glass.\",\n      \"strDrinkThumb\": \"https://www.thecocktaildb.com/images/media/drink/5noda61589575158.jpg\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://www.thecocktaildb.com/api/json/v1/1",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "47cdfd4b-c51e-4ea5-8d5e-e9af983b2f2c",
+    "name": "TheCocktailDB Filter Search API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "An open, crowd-sourced database of cocktails and drinks from around the world with a free API. Search cocktails by name, ingredient, category, glass type, or alcoholic content. Includes detailed recipes, measurements, and images.",
+      "type": "text/plain"
+    }
+  }
+}

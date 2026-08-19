@@ -1,0 +1,54 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "TheCocktailDB Filter Lookup API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Lookup",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "TheCocktailDB Lookup Cocktail or Ingredient by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://www.thecocktaildb.com/api/json/v1/1/lookup.php",
+            "params": [
+              {
+                "name": "i",
+                "value": "",
+                "type": "query",
+                "description": "Cocktail ID to look up"
+              },
+              {
+                "name": "iid",
+                "value": "",
+                "type": "query",
+                "description": "Ingredient ID to look up"
+              }
+            ]
+          },
+          "docs": "Look up a full cocktail detail by its ID using the 'i' parameter, or look up an ingredient by its ingredient ID using the 'iid' parameter."
+        },
+        {
+          "info": {
+            "name": "TheCocktailDB Get a Random Cocktail",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://www.thecocktaildb.com/api/json/v1/1/random.php"
+          },
+          "docs": "Retrieve a single random cocktail with full details."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

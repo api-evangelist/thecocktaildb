@@ -1,0 +1,144 @@
+{
+  "item": [
+    {
+      "id": "4bce0d08-87f9-4e1b-8270-01bce7ff2852",
+      "name": "List",
+      "description": {
+        "content": "List available categories, glasses, and ingredients",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "0415eb5c-c094-4b15-ae9c-ace5c10e1f4b",
+          "name": "TheCocktailDB List Categories, Glasses, Ingredients, or Alcoholic Filters",
+          "request": {
+            "name": "TheCocktailDB List Categories, Glasses, Ingredients, or Alcoholic Filters",
+            "description": {
+              "content": "List all available categories ('c=list'), glasses ('g=list'), ingredients ('i=list'), or alcoholic filters ('a=list').",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "list.php"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "c",
+                  "value": "<string>",
+                  "description": "Set to 'list' to retrieve all categories"
+                },
+                {
+                  "disabled": false,
+                  "key": "g",
+                  "value": "<string>",
+                  "description": "Set to 'list' to retrieve all glass types"
+                },
+                {
+                  "disabled": false,
+                  "key": "i",
+                  "value": "<string>",
+                  "description": "Set to 'list' to retrieve all ingredients"
+                },
+                {
+                  "disabled": false,
+                  "key": "a",
+                  "value": "<string>",
+                  "description": "Set to 'list' to retrieve all alcoholic filter options"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "613b7374-dd73-46f1-8c77-9179b8d94c2b",
+              "name": "List of available filter values",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "list.php"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "c",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "g",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "i",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "a",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"drinks\": [\n    {\n      \"strCategory\": \"Ordinary Drink\"\n    },\n    {\n      \"strCategory\": \"Cocktail\"\n    },\n    {\n      \"strCategory\": \"Shake\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://www.thecocktaildb.com/api/json/v1/1",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "acef5cb9-a0e3-4d45-bd4e-63c8627fe638",
+    "name": "TheCocktailDB Filter List API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "An open, crowd-sourced database of cocktails and drinks from around the world with a free API. Search cocktails by name, ingredient, category, glass type, or alcoholic content. Includes detailed recipes, measurements, and images.",
+      "type": "text/plain"
+    }
+  }
+}

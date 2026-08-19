@@ -1,0 +1,55 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "TheCocktailDB Filter API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Filter",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "TheCocktailDB Filter Cocktails by Attribute",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://www.thecocktaildb.com/api/json/v1/1/filter.php",
+            "params": [
+              {
+                "name": "i",
+                "value": "",
+                "type": "query",
+                "description": "Filter by ingredient name (e.g. vodka)"
+              },
+              {
+                "name": "a",
+                "value": "",
+                "type": "query",
+                "description": "Filter by alcoholic status"
+              },
+              {
+                "name": "c",
+                "value": "",
+                "type": "query",
+                "description": "Filter by category"
+              },
+              {
+                "name": "g",
+                "value": "",
+                "type": "query",
+                "description": "Filter by glass type"
+              }
+            ]
+          },
+          "docs": "Filter cocktails by a single ingredient ('i'), alcoholic content ('a'), category ('c'), or glass type ('g'). Multi-ingredient filtering is available to premium subscribers."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

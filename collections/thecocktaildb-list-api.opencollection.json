@@ -1,0 +1,55 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "TheCocktailDB Filter List API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "List",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "TheCocktailDB List Categories, Glasses, Ingredients, or Alcoholic Filters",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://www.thecocktaildb.com/api/json/v1/1/list.php",
+            "params": [
+              {
+                "name": "c",
+                "value": "",
+                "type": "query",
+                "description": "Set to 'list' to retrieve all categories"
+              },
+              {
+                "name": "g",
+                "value": "",
+                "type": "query",
+                "description": "Set to 'list' to retrieve all glass types"
+              },
+              {
+                "name": "i",
+                "value": "",
+                "type": "query",
+                "description": "Set to 'list' to retrieve all ingredients"
+              },
+              {
+                "name": "a",
+                "value": "",
+                "type": "query",
+                "description": "Set to 'list' to retrieve all alcoholic filter options"
+              }
+            ]
+          },
+          "docs": "List all available categories ('c=list'), glasses ('g=list'), ingredients ('i=list'), or alcoholic filters ('a=list')."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
