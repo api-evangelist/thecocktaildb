@@ -19,6 +19,12 @@ tags:
   - Cocktails
   - Drinks
   - Recipes
+  - Food and Beverage
+  - Open Data
+tags_raw:
+  - Cocktails
+  - Drinks
+  - Recipes
   - Food And Beverage
   - Open Data
 created: '2026-06-13'
@@ -36,6 +42,12 @@ apis:
   humanURL: https://www.thecocktaildb.com/api.php
   baseURL: https://www.thecocktaildb.com/api/json/v1/1
   tags:
+  - Cocktails
+  - Drinks
+  - Recipes
+  - Food and Beverage
+  - Open Data
+  tags_raw:
   - Cocktails
   - Drinks
   - Recipes
