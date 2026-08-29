@@ -15,6 +15,12 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
+  "notes": [
+    "thecocktaildb-filter-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "thecocktaildb-list-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "thecocktaildb-lookup-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "thecocktaildb-search-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
   "skipped": []
 }

@@ -1,4 +1,4 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   title: TheCocktailDB Filter Search API
   description: An open, crowd-sourced database of cocktails and drinks from around the world with a free API. Search cocktails by name, ingredient, category, glass type, or alcoholic content. Includes detailed recipes, measurements, and images.
@@ -81,25 +81,29 @@ components:
           description: Cocktail name
           example: Margarita
         strDrinkAlternate:
-          type: string
+          type:
+          - string
+          - 'null'
           description: Alternate name for the cocktail
-          nullable: true
         strTags:
-          type: string
+          type:
+          - string
+          - 'null'
           description: Comma-separated tags
-          nullable: true
         strVideo:
-          type: string
+          type:
+          - string
+          - 'null'
           description: Video URL
-          nullable: true
         strCategory:
           type: string
           description: Category of drink
           example: Ordinary Drink
         strIBA:
-          type: string
+          type:
+          - string
+          - 'null'
           description: IBA classification
-          nullable: true
         strAlcoholic:
           type: string
           description: Whether the drink is alcoholic
@@ -116,72 +120,87 @@ components:
           type: string
           description: Preparation instructions in English
         strInstructionsES:
-          type: string
+          type:
+          - string
+          - 'null'
           description: Preparation instructions in Spanish
-          nullable: true
         strInstructionsDE:
-          type: string
+          type:
+          - string
+          - 'null'
           description: Preparation instructions in German
-          nullable: true
         strInstructionsFR:
-          type: string
+          type:
+          - string
+          - 'null'
           description: Preparation instructions in French
-          nullable: true
         strInstructionsIT:
-          type: string
+          type:
+          - string
+          - 'null'
           description: Preparation instructions in Italian
-          nullable: true
         strDrinkThumb:
           type: string
           description: Thumbnail image URL
           example: https://www.thecocktaildb.com/images/media/drink/5noda61589575158.jpg
         strIngredient1:
-          type: string
+          type:
+          - string
+          - 'null'
           description: First ingredient
-          nullable: true
         strIngredient2:
-          type: string
+          type:
+          - string
+          - 'null'
           description: Second ingredient
-          nullable: true
         strIngredient3:
-          type: string
+          type:
+          - string
+          - 'null'
           description: Third ingredient
-          nullable: true
         strMeasure1:
-          type: string
+          type:
+          - string
+          - 'null'
           description: Measure for first ingredient
-          nullable: true
         strMeasure2:
-          type: string
+          type:
+          - string
+          - 'null'
           description: Measure for second ingredient
-          nullable: true
         strMeasure3:
-          type: string
+          type:
+          - string
+          - 'null'
           description: Measure for third ingredient
-          nullable: true
         strImageSource:
-          type: string
+          type:
+          - string
+          - 'null'
           description: Image source URL
-          nullable: true
         strImageAttribution:
-          type: string
+          type:
+          - string
+          - 'null'
           description: Image attribution
-          nullable: true
         strCreativeCommonsConfirmed:
-          type: string
+          type:
+          - string
+          - 'null'
           description: Whether image is Creative Commons confirmed
-          nullable: true
         dateModified:
-          type: string
+          type:
+          - string
+          - 'null'
           description: Date last modified
-          nullable: true
     CocktailsResponse:
       type: object
       description: Response containing a list of cocktails
       properties:
         drinks:
-          type: array
+          type:
+          - array
+          - 'null'
           description: Array of cocktail objects; null if no results found
           items:
             $ref: '#/components/schemas/Drink'
-          nullable: true
