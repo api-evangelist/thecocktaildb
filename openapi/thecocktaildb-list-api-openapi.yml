@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: TheCocktailDB Filter List API
+  title: TheCocktailDB List API
   description: An open, crowd-sourced database of cocktails and drinks from around the world with a free API. Search cocktails by name, ingredient, category, glass type, or alcoholic content. Includes detailed recipes, measurements, and images.
   version: '1.0'
   contact:

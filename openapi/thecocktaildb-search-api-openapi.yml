@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: TheCocktailDB Filter Search API
+  title: TheCocktailDB Search API
   description: An open, crowd-sourced database of cocktails and drinks from around the world with a free API. Search cocktails by name, ingredient, category, glass type, or alcoholic content. Includes detailed recipes, measurements, and images.
   version: '1.0'
   contact:
@@ -68,6 +68,17 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
+    CocktailsResponse:
+      type: object
+      description: Response containing a list of cocktails
+      properties:
+        drinks:
+          type:
+          - array
+          - 'null'
+          description: Array of cocktail objects; null if no results found
+          items:
+            $ref: '#/components/schemas/Drink'
     Drink:
       type: object
       description: Full cocktail details including ingredients, instructions, and media
@@ -193,14 +204,3 @@ components:
           - string
           - 'null'
           description: Date last modified
-    CocktailsResponse:
-      type: object
-      description: Response containing a list of cocktails
-      properties:
-        drinks:
-          type:
-          - array
-          - 'null'
-          description: Array of cocktail objects; null if no results found
-          items:
-            $ref: '#/components/schemas/Drink'
