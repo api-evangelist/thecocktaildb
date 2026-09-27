@@ -68,17 +68,6 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    CocktailsResponse:
-      type: object
-      description: Response containing a list of cocktails
-      properties:
-        drinks:
-          type:
-          - array
-          - 'null'
-          description: Array of cocktail objects; null if no results found
-          items:
-            $ref: '#/components/schemas/Drink'
     Drink:
       type: object
       description: Full cocktail details including ingredients, instructions, and media
@@ -204,3 +193,14 @@ components:
           - string
           - 'null'
           description: Date last modified
+    CocktailsResponse:
+      type: object
+      description: Response containing a list of cocktails
+      properties:
+        drinks:
+          type:
+          - array
+          - 'null'
+          description: Array of cocktail objects; null if no results found
+          items:
+            $ref: '#/components/schemas/Drink'
